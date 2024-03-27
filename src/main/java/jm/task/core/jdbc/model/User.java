@@ -1,22 +1,23 @@
 package jm.task.core.jdbc.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="lastName")
+    @Column(name = "lastName")
     private String lastName;
 
-    @Column(name="age")
+    @Column(name = "age")
     private Byte age;
 
     public User() {
@@ -57,6 +58,23 @@ public class User {
         return age;
     }
 
+    public void setAge(Byte age) {
+        this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(age, user.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName, age);
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -67,7 +85,4 @@ public class User {
                 '}';
     }
 
-    public void setAge(Byte age) {
-        this.age = age;
-    }
 }

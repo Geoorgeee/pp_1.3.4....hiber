@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface UserService {
     UserDao userDaoHibernateImpl = new UserDaoHibernateImpl();
+
     void createUsersTable() throws SQLException;
 
     void dropUsersTable() throws SQLException;

@@ -1,4 +1,5 @@
 package jm.task.core.jdbc.util;
+
 import jm.task.core.jdbc.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -6,9 +7,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,13 +21,15 @@ public class Util {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(STR."Ошибка при установлении соединения с базой данных: \{e.getMessage()}");
         }
         return connection;
     }
+
     private static SessionFactory sessionFactory;
-       public static SessionFactory getSessionFactory() {
+
+    public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
